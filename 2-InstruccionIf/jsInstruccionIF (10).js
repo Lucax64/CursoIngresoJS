@@ -7,19 +7,16 @@ function mostrar() {
 	numero = Math.floor(Math.random() * ((maximo + 1) - minimo) + minimo);
 
 	if (numero >= 9) {
-		alert(numero);
-		alert("Excelente");
+		alert("Excelente. Nota: " + numero);
 
 	}
 
-	else if (numero > 4 && numero <= 8) {
-		alert(numero);
-		alert("APROBÓ");
+	else if (numero < 4) {
+		alert("Vamos, la proxima se puede. Nota: " + numero);
 	}
 
 	else {
-		alert(numero);
-		alert("Vamos, la proxima se puede");
+		alert("APROBÓ. Nota: " + numero);
 	}
 
 
