@@ -12,11 +12,11 @@ function CalcularPrecio() {
     var lamparas = parseInt(document.getElementById("Cantidad").value);
     var marca = document.getElementById("Marca").value;
     var precio = lamparas * 35;
+    var impuesto = precio * 0.1;
 
-    if (lamparas >= 6) {
+    if (lamparas == 6) {
         document.getElementById("precioDescuento").value = precio - (precio * 0.5);
     }
-
     else if (lamparas == 5) {
         switch (marca) {
             case "ArgentinaLuz":
@@ -26,7 +26,6 @@ function CalcularPrecio() {
                 document.getElementById("precioDescuento").value = precio - (precio * 0.3);
         }
     }
-
     else if (lamparas == 4) {
         switch (marca) {
             case "ArgentinaLuz":
@@ -48,5 +47,12 @@ function CalcularPrecio() {
             default:
                 document.getElementById("precioDescuento").value = precio - (precio * 0.05);
         }
+    }
+    else if (lamparas > 6) {
+        document.getElementById("precioDescuento").value = precio - (precio * 0.5) + impuesto;
+        alert("Usted pago $" + impuesto + " de IIBB.");
+    }
+    else {
+        document.getElementById("precioDescuento").value = precio;
     }
 }
