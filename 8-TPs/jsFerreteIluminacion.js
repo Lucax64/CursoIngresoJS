@@ -8,6 +8,84 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  ”Usted pago X de IIBB.”, siendo X el impuesto que se pagó. 
 
  */
+
+function CalcularPrecio() {
+
+    var precio = 35;
+    var cantidad;
+    var marca;
+    var porcDescuento;
+    var descuento;
+    var precioConDescuento;
+    var importeFinal;
+    var iibb;
+
+    cantidad = parseInt(document.getElementById("Cantidad").value);
+    marca = document.getElementById("Marca").value;
+
+    if (cantidad > 0) {
+        switch (cantidad) {
+
+            case 1:
+            case 2:
+                porcDescuento = 0;
+                break;
+            case 3:
+                if (marca == "ArgentinaLuz") {
+                    porcDescuento = 15;
+                }
+                else if (marca == "FelipeLamparas") {
+                    porcDescuento = 10;
+                }
+                else {
+                    porcDescuento = 5;
+                }
+                break;
+            case 4:
+                if (marca == "ArgentinaLuz" || marca == "FelipeLamparas") {
+                    porcDescuento = 25;
+                }
+                else {
+                    porcDescuento = 20;
+                }
+                break;
+            case 5:
+                if (marca == "ArgentinaLuz") {
+                    porcDescuento = 40;
+                }
+                else {
+                    porcDescuento = 30;
+                }
+                break;
+            default:
+                porcDescuento = 50;
+
+        }
+        //------------------------------------
+        descuento = precio * porcDescuento / 100;
+
+        precioConDescuento = precio - descuento;
+
+        document.getElementById("precioDescuento").value = precioConDescuento;
+
+        importeFinal = precioConDescuento * cantidad;
+
+        if (importeFinal > 120) {
+            iibb = importeFinal * 10 / 100;
+            importeFinal = importeFinal + iibb;
+
+            alert("Total a pagar $ " + importeFinal + " Usted pago $ " + iibb + " de ingresos brutos");
+
+        }
+        else {
+            alert("Total a pagar $ " + importeFinal);
+        }
+    }
+    else {
+        alert("No es una cantidad valida");
+    }
+}
+/*
 function CalcularPrecio() {
     var lamparas = parseInt(document.getElementById("Cantidad").value);
     var marca = document.getElementById("Marca").value;
@@ -55,4 +133,5 @@ function CalcularPrecio() {
     else {
         document.getElementById("precioDescuento").value = precio;
     }
-}
+}*/
+
