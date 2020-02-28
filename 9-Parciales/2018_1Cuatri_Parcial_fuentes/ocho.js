@@ -31,9 +31,9 @@ function mostrar() {
 
     do {
 
-        numero = parseFloat(prompt("Ingrese un numero (-100 - 100): "));
-        while (numero < (-100) || numero > 100 || isNaN(numero)); {
-            numero = parseFloat(prompt("Error. Ingrese un numero (-100 - 100): "));
+        numero = parseInt(prompt("Ingrese un numero (-100 - 100): "));
+        while (numero < -100 || numero > 100 || isNaN(numero)); {
+            numero = parseInt(prompt("Error. Ingrese un numero (-100 - 100): "));
         }
 
         acumuladorNumeros = acumuladorNumeros + numero;
@@ -51,10 +51,6 @@ function mostrar() {
         }
 
         seguir = prompt("Desea ingresar otra letra y numero? (s-n)");
-        while (seguir != 's' && sexo != 'n') {
-            seguir = prompt("Error. Desea ingresar otra letra y numero? (s-n)");
-        }
-
 
     } while (seguir == "s");
 
