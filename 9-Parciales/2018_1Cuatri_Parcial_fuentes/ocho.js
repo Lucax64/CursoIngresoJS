@@ -1,62 +1,85 @@
 function mostrar() {
-    /*Realizar el algoritmo que permita iterar el ingreso de dos datos, una letra y un número entre -100 y 100 (validar)
-    hasta que el usuario quiera e informar al terminar el ingreso por document.write:
-    a) La cantidad de números pares.
-    b) La cantidad de números impares.
-    c) La cantidad de ceros.
-    d) El promedio de todos los números positivos ingresados.
-    e) La suma de todos los números negativos.
-    f) El número y la letra del máximo y el mínimo.
-    
-    Testeo con los siguientes datos
-    ( d , -150(mal) , -50(bien))
-    ( z , 0)
-    ( g , 20)
-    ( a , 150(mal) , 0(bien))
-    ( b , 3)
-    ( k , 7) */
-
     var letra;
     var numero;
-    var acumuladorNumeros = 0
+    var acumuladorPos = 0;
+    var contadorPos = 0;
     var contadorPares = 0;
     var contadorImpares = 0;
     var ceros = 0;
     var promedioPositivos;
-    var sumaNegativos;
-    var maximo;
-    var minimo;
+    var sumaNegativos = 0;
+    var numeroMaximo;
+    var numeroMinimo;
+    var letraMaximo;
+    var letraMinimo;
     var flag = 0;
     var seguir;
 
     do {
 
-        numero = parseInt(prompt("Ingrese un numero (-100 - 100): "));
-        while (numero < -100 || numero > 100 || isNaN(numero)); {
-            numero = parseInt(prompt("Error. Ingrese un numero (-100 - 100): "));
+        //Validacion
+        letra = prompt("Ingrese una letra: ");
+        while (letra < 'A' || letra > 'Z' && letra < 'a' || letra > 'z') {
+            letra = prompt("Letra invalida. Ingrese una letra: ");
         }
 
-        acumuladorNumeros = acumuladorNumeros + numero;
+        numero = parseInt(prompt("Ingrese un numero (-100 - 100): "));
+        while (numero < -100 || numero > 100 || isNaN(numero)) {
+            numero = parseInt(prompt("Numero invalido. Ingrese un numero (-100 - 100): "));
+        }
 
+        //Pares e Impares
         if (numero % 2 == 0) {
             contadorPares++;
-        }
-
-        else if (numero == 0) {
-            ceros++;
         }
 
         else {
             contadorImpares++;
         }
 
+        //Positivos, Negativos y Ceros
+        if (numero > 0) {
+            acumuladorPos = acumuladorPos + numero;
+            contadorPos++;
+        }
+
+        else if (numero < 0) {
+            sumaNegativos = sumaNegativos + numero;
+        }
+
+        else {
+            ceros++;
+        }
+
+        //Minimo y Maximo
+        if (numero < numeroMinimo || flag == 0) {
+            numeroMinimo = numero;
+            letraMinimo = letra;
+        }
+
+        if (numero > numeroMaximo || flag == 0) {
+            numeroMaximo = numero;
+            letraMaximo = letra;
+            flag = 1;
+        }
+
         seguir = prompt("Desea ingresar otra letra y numero? (s-n)");
 
     } while (seguir == "s");
 
+
+    //Promedio
+    if (contadorPos != 0) {
+        promedioPositivos = acumuladorPos / contadorPos;
+    }
+
+
     document.write("Cantidad de numeros pares: " + contadorPares + "</br>");
     document.write("Cantidad de numeros impares: " + contadorImpares + "</br>");
     document.write("Cantidad de ceros: " + ceros + "</br>");
-
+    document.write("El promedio de los numeros positivos es: " + promedioPositivos + "</br>");
+    document.write("La suma de los negativos es: " + sumaNegativos + "</br>");
+    document.write("El numero maximo es: " + numeroMaximo + " , y su letra es : " + letraMaximo + "</br>");
+    document.write("El numero minimo es: " + numeroMinimo + " , y su letra es : " + letraMinimo + "</br>");
 
 }
